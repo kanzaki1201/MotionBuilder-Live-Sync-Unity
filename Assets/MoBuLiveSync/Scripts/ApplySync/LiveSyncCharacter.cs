@@ -7,6 +7,7 @@ namespace MoBuLiveSync.ApplySync
     public class LiveSyncCharacter : LiveSyncBase<SyncCharacter>
     {
         [SerializeField] private Animator _animator;
+        [SerializeField] private Vector3 hipRotationOffset;
 
         [ContextMenu("Initialize LiveSyncCharacter")]
         public override void Initialize()
@@ -58,6 +59,8 @@ namespace MoBuLiveSync.ApplySync
                     boneTransform.localPosition = boneData.Position;
                 }
             }
+
+            _animator.GetBoneTransform(HumanBodyBones.Hips).localRotation = Quaternion.Euler(hipRotationOffset);
         }
     }
 }
